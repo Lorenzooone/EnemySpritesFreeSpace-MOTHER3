@@ -67,6 +67,7 @@ namespace FreeSpace
                 t = t + 1;
             }
             character = 0;
+            t = 0;
             while (t <= 256)
             {
                 g = PointerCCG[t];

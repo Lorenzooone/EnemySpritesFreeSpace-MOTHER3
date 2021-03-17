@@ -545,7 +545,7 @@ namespace Enemy_Graphics
     }
     public class RemoveSame
     {
-        public const int EndingSOB = 0x1CFFD98;
+        public const int EndingSOB = 0x1CFF688;
         public const int EndingCCG = 0x1CE5420;
         static int InsertPointer(byte[] memblock, byte[] a, int Pointer, int LastUsed)
         {

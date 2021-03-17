@@ -56,7 +56,7 @@ namespace FreeSpace
             {
                 g = PointerSOB[t];
                 character = g;
-                for (g = 0; g <= SOBLength[t] / 4; g++)
+                for (g = 0; g < (SOBLength[t] + 3) / 4; g++)
                 {
                     memblock[(int)character] = 255;
                     memblock[(int)character + 1] = 255;
@@ -72,7 +72,7 @@ namespace FreeSpace
             {
                 g = PointerCCG[t];
                 character = g;
-                for (g = 0; g <= CCGLength[t] / 4; g++)
+                for (g = 0; g < (CCGLength[t] + 3) / 4; g++)
                 {
                     memblock[(int)character] = 255;
                     memblock[(int)character + 1] = 255;
@@ -545,6 +545,8 @@ namespace Enemy_Graphics
     }
     public class RemoveSame
     {
+        public const int EndingSOB = 0x1CFFD98;
+        public const int EndingCCG = 0x1CE5420;
         static int InsertPointer(byte[] memblock, byte[] a, int Pointer, int LastUsed)
         {
             memblock[Pointer] = (byte)(((LastUsed - FreeSpace.Pointers.Base)) & 0xFF);
@@ -591,8 +593,6 @@ namespace Enemy_Graphics
             byte[] memblock = alpha;
             int LastCCG = (memblock[FreeSpace.Pointers.BaseCCG]) + (memblock[FreeSpace.Pointers.BaseCCG + 1] << 8) + (memblock[FreeSpace.Pointers.BaseCCG + 2] << 16) + (memblock[FreeSpace.Pointers.BaseCCG + 3] << 24) + FreeSpace.Pointers.Base;
             int LastSOB = (memblock[FreeSpace.Pointers.BaseSOB]) + (memblock[FreeSpace.Pointers.BaseSOB + 1] << 8) + (memblock[FreeSpace.Pointers.BaseSOB + 2] << 16) + (memblock[FreeSpace.Pointers.BaseSOB + 3] << 24) + FreeSpace.Pointers.Base;
-            const int EndingSOB = 0x1CFFD98;
-            const int EndingCCG = 0x1CE5420;
             List<FinalProducts> End = new List<FinalProducts>();
             for (int Num = 0; Num <= 256; Num++)
             {

@@ -591,6 +591,7 @@ namespace Enemy_Graphics
             int LastCCG = (memblock[FreeSpace.Pointers.BaseCCG]) + (memblock[FreeSpace.Pointers.BaseCCG + 1] << 8) + (memblock[FreeSpace.Pointers.BaseCCG + 2] << 16) + (memblock[FreeSpace.Pointers.BaseCCG + 3] << 24) + FreeSpace.Pointers.Base;
             int LastSOB = (memblock[FreeSpace.Pointers.BaseSOB]) + (memblock[FreeSpace.Pointers.BaseSOB + 1] << 8) + (memblock[FreeSpace.Pointers.BaseSOB + 2] << 16) + (memblock[FreeSpace.Pointers.BaseSOB + 3] << 24) + FreeSpace.Pointers.Base;
             const int EndingSOB = 0x1CFFD98;
+            const int EndingCCG = 0x1CE5420;
             List<FinalProducts> End = new List<FinalProducts>();
             for (int Num = 0; Num <= 256; Num++)
             {
@@ -671,11 +672,11 @@ namespace Enemy_Graphics
                 LastCCG = (LastCCG & 3) == 0 ? LastCCG : LastCCG + (4 - (LastCCG & 3));
                 if (EndingSOB - LastSOB > 0)
                 {
-                    Console.WriteLine("Free SOB space from: 0x" + LastSOB.ToString("X7"));
-                    Console.WriteLine("Free CCG space from: 0x" + LastCCG.ToString("X7"));
+                    Console.WriteLine("Free SOB space from: 0x" + LastSOB.ToString("X7") + " - To: 0x" + EndingSOB.ToString("X7"));
+                    Console.WriteLine("Free CCG space from: 0x" + LastCCG.ToString("X7") + " - To: 0x" + EndingCCG.ToString("X7"));
                 }
                 else
-                    Console.WriteLine("Free CCG space from: 0x" + LastSOB.ToString("X7"));
+                    Console.WriteLine("Free CCG space from: 0x" + LastSOB.ToString("X7") + " - To: 0x" + EndingCCG.ToString("X7"));
             }
             return memblock;
         }
